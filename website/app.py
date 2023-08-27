@@ -8,7 +8,17 @@ st.set_page_config(page_title="GPT Intune Device Troubleshooter", page_icon ="ch
 #################################################################################
 ################################# Vars ##########################################
 #################################################################################
-category_list = ['GetDeviceList', 'GetDeviceStatus', 'GetSingleDevice', 'IntuneHowTo', 'ConfigProfiles', 'AppList', 'CompliancePolicies', 'DeviceGroupMembership', 'GraphCall']
+category_list = [
+    'GetDeviceList'
+    ,'GetDeviceStatus'
+    ,'GetSingleDevice'
+    ,'IntuneHowTo'
+    ,'ConfigProfiles'
+    ,'AppList'
+    ,'CompliancePolicies'
+    ,'DeviceGroupMembership'
+    ,'GraphCall'
+]
 
 if "category" not in st.session_state:
     st.session_state["category"] = ""
