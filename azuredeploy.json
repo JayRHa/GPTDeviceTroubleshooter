@@ -1,0 +1,160 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "sites_name": {
+            "defaultValue": "PleaseChangeThisName",
+            "type": "string"
+        },
+        "accounts_name": {
+            "defaultValue": "PleaseChangeThisName",
+            "type": "string"
+        },
+        "website_sku": {
+            "type": "string",
+            "defaultValue": "F1",
+            "allowedValues": [
+                "F1",
+                "B1",
+                "B2",
+                "B3",
+                "S1",
+                "S2",
+                "S3",
+                "P1",
+                "P2",
+                "P3",
+                "P4"
+            ]
+        }
+    },
+    "variables": {
+        "appServicePlanPortalName": "[concat('AppServicePlan-', parameters('sites_name'))]",
+        "repoUrl": "https://github.com/JayRHa/GPTDeviceTroubleshooter.git"
+    },
+    "resources": [
+        {
+            "type": "Microsoft.CognitiveServices/accounts",
+            "apiVersion": "2023-05-01",
+            "name": "[parameters('accounts_name')]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "S0"
+            },
+            "kind": "OpenAI",
+            "properties": {
+                "customSubDomainName": "[parameters('accounts_name')]",
+                "networkAcls": {
+                    "defaultAction": "Allow",
+                    "virtualNetworkRules": [],
+                    "ipRules": []
+                },
+                "publicNetworkAccess": "Enabled"
+            }
+        },
+        {
+            "type": "Microsoft.Web/serverfarms",
+            "apiVersion": "2022-09-01",
+            "name": "[variables('appServicePlanPortalName')]",
+            "location": "[resourceGroup().location]",
+            "sku": {
+                "name": "[parameters('website_sku')]"
+            },
+            "kind": "linux",
+            "properties": {
+                "reserved": true
+            }
+        },
+        {
+            "type": "Microsoft.CognitiveServices/accounts/deployments",
+            "apiVersion": "2023-05-01",
+            "name": "[concat(parameters('accounts_name'), '/gpt-35-turbo')]",
+            "dependsOn": [
+                "[resourceId('Microsoft.CognitiveServices/accounts', parameters('accounts_name'))]"
+            ],
+            "sku": {
+                "name": "Standard",
+                "capacity": 120
+            },
+            "properties": {
+                "model": {
+                    "format": "OpenAI",
+                    "name": "gpt-35-turbo",
+                    "version": "0301"
+                },
+                "versionUpgradeOption": "OnceNewDefaultVersionAvailable",
+                "raiPolicyName": "Microsoft.Default"
+            }
+        },
+        {
+            "type": "Microsoft.Web/sites",
+            "apiVersion": "2020-06-01",
+            "name": "[parameters('sites_name')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanPortalName'))]"
+            ],
+            "kind": "app,linux",
+            "properties": {
+                "name": "[parameters('sites_name')]",
+                "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('appServicePlanPortalName'))]",
+                "siteConfig": {
+                    "linuxFxVersion": "PYTHON|3.10",
+                    "appSettings": [
+                        {
+                            "name": "AZURE_TENANT_ID",
+                            "value": "[subscription().tenantId]"
+                        },
+                        {
+                            "name": "APPLICATION_ID",
+                            "value": "XXXXXXXX"
+                        },
+                        {
+                            "name": "REDIRECT_URI",
+                            "value": "[concat('https://', parameters('sites_name'), '.azurewebsites.net/login/callback')]"
+                        },
+                        {
+                            "name": "AZURE_OPENAI_KEY",
+                            "value": "XXXXXXXX"
+                        },
+                        {
+                            "name": "AZURE_OPENAI_ENDPOINT",
+                            "value": "[reference(resourceId('Microsoft.CognitiveServices/accounts', parameters('accounts_name'))).endpoint]"
+                        },
+                        {
+                            "name": "AZURE_OPENAI_CHATGPT_DEPLOYMENT",
+                            "value": "gpt-35-turbo"
+                        }
+                    ]
+                }
+            },
+            "resources": [
+                {
+                    "type": "sourcecontrols",
+                    "name": "web",
+                    "apiVersion": "2020-06-01",
+                    "properties": {
+                        "repoUrl": "[variables('repoUrl')]",
+                        "branch": "main",
+                        "isManualIntegration": true
+                    },
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/Sites', parameters('sites_name'))]"
+                    ]
+                }
+            ]
+        },
+        {
+            "type": "Microsoft.Web/sites/config",
+            "apiVersion": "2022-09-01",
+            "name": "[concat(parameters('sites_name'), '/web')]",
+            "location": "[resourceGroup().location]",
+            "dependsOn": [
+                "[resourceId('Microsoft.Web/sites', parameters('sites_name'))]"
+            ],
+            "properties": {
+                "appCommandLine": "python -m streamlit run website/app.py --server.port 8000 --server.address 0.0.0.0"
+            }
+        }
+    ]
+}

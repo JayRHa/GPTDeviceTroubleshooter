@@ -1,0 +1,6 @@
+streamlit
+streamlit-chat
+openai
+python-dotenv
+msal_streamlit_authentication
+requests
