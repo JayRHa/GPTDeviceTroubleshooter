@@ -1,5 +1,7 @@
 # Documentation
 [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FJayRHa%2FGPTDeviceTroubleshooter%2Fmain%2Fazuredeploy.json)
+
+- Find more informations in my blog post on jannikreinhard.com
 ## Intro
 You can find the Tool Intune Device Troubleshooter in this repository. The gole of this tool is to provide you an assistant which helps you to answer your questions arround your intune environment.
 If you have further ideas I would be happy if you send them to me, open an issue on this repository or create a pull request.
@@ -24,7 +26,7 @@ If you have further ideas I would be happy if you send them to me, open an issue
 
 ## Prerequisites
 - GPT enabled Subscription (https://aka.ms/oai/access)
-- App registration with deligated permissions (DeviceManagementConfiguration.Read.All, DeviceManagementManagedDevices.Read.All, DeviceManagementApps.Read.All, Group.Read.All, User.Read)
+- App registration with deligated permissions (DeviceManagementConfiguration.Read.All, DeviceManagementManagedDevices.Read.All, DeviceManagementApps.Read.All, Group.Read.All, User.Read, Device.Read.All)
 
 ![Alt text](https://github.com/JayRHa/GPTDeviceTroubleshooter/blob/main/.pictures/appRegistartion.png)
 
