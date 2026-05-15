@@ -1,3 +1,18 @@
+<!-- repo-standard:start -->
+# GPT Device Troubleshooter
+
+Archived GPT-assisted device troubleshooting experiment for endpoint management scenarios.
+
+| Area | Stack | Visibility |
+| --- | --- | --- |
+| Endpoint Management | Python, OpenAI | Public archived |
+
+**Repository:** `JayRHa/gpt-device-troubleshooter`  
+**Topics:** `openai`, `gpt`, `troubleshooting`, `microsoft-intune`, `python`, `archived`
+<!-- repo-standard:end -->
+
+---
+
 # Documentation
 [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FJayRHa%2FGPTDeviceTroubleshooter%2Fmain%2Fazuredeploy.json)
 
