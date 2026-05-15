@@ -14,33 +14,51 @@ Build. Automate. Share.
 
 ---
 
-`Endpoint Management` | `Python` | `Public` | `Maintained`
+`AI-assisted Operations` | `Python` | `Public` | `Archived`
 
 </div>
 
 ## What is this?
 
-Archived GPT-assisted device troubleshooting experiment for endpoint management scenarios.
+GPT Device Troubleshooter explores AI-assisted workflows where prompts, context, and automation logic help with endpoint or operations tasks.
 
-> Browse the documentation below for setup notes, usage details, and project-specific context.
+## Project Context
 
----
+- Use it as a reference for combining automation with model-assisted analysis or responses.
+- The important design boundary is keeping deterministic automation separate from model-generated output.
+- This repository is archived and kept as a reference implementation.
+
+## How It Works
+
+Input is collected from the user or system, enriched with context, sent through AI-assisted processing, then converted into a recommendation, response, or automation step.
+
+```mermaid
+flowchart LR
+    Input[User or system input] --> Context[Context collection]
+    Context --> Model[AI-assisted processing]
+    Model --> Review[Validation or review]
+    Review --> Output[Recommendation or action]
+    Output --> User[User workflow]
+```
 
 ## Quick Start
 
-1. Review the project documentation below.
+1. Review the project context and workflow below.
 2. Clone the repository:
 
    ```bash
    git clone https://github.com/JayRHa/GPTDeviceTroubleshooter.git
    ```
 
-3. Follow the setup, deployment, or usage notes in the preserved documentation section.
+3. Continue with the project-specific documentation in the next section.
 
 ---
 <!-- unified-readme:end -->
 
-## Existing Documentation
+<!-- project-documentation:start -->
+## Project Documentation
+
+The sections below contain the repository-specific setup, usage, and reference material for this project.
 
 # GPT Device Troubleshooter
 
