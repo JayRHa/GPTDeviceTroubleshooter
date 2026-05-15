@@ -20,7 +20,7 @@ Build. Automate. Share.
 
 ## What is this?
 
-This repository provides archived GPT-assisted device troubleshooting experiment for endpoint management scenarios.
+Archived GPT-assisted device troubleshooting experiment for endpoint management scenarios.
 
 > Browse the documentation below for setup notes, usage details, and project-specific context.
 
