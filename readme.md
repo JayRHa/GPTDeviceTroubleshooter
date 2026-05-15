@@ -35,15 +35,15 @@ If you have further ideas I would be happy if you send them to me, open an issue
 - User delegated permissions to authenticate on graph
 - Azure App Service for the website and the code logic
 
-![Alt text](https://github.com/JayRHa/GPTDeviceTroubleshooter/blob/main/.pictures/auth.png)
+![Alt text](https://github.com/JayRHa/GPTDeviceTroubleshooter/blob/main/assets/auth.png)
 
-![Alt text](https://github.com/JayRHa/GPTDeviceTroubleshooter/blob/main/.pictures/flow.png)
+![Alt text](https://github.com/JayRHa/GPTDeviceTroubleshooter/blob/main/assets/flow.png)
 
 ## Prerequisites
 - GPT enabled Subscription (https://aka.ms/oai/access)
 - App registration with deligated permissions (DeviceManagementConfiguration.Read.All, DeviceManagementManagedDevices.Read.All, DeviceManagementApps.Read.All, Group.Read.All, User.Read, Device.Read.All)
 
-![Alt text](https://github.com/JayRHa/GPTDeviceTroubleshooter/blob/main/.pictures/appRegistartion.png)
+![Alt text](https://github.com/JayRHa/GPTDeviceTroubleshooter/blob/main/assets/appRegistartion.png)
 
 ## Deployment
 [![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FJayRHa%2FGPTDeviceTroubleshooter%2Fmain%2Fazuredeploy.json)
